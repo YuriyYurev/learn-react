@@ -1,8 +1,10 @@
+import style from './Drawer.module.scss'
+
 export default function Drawer() {
     return (
-        <div className="drawer">
+        <div className={style.drawer}>
             <h2 className="d-flex justify-between mb-30">Корзина <img className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Закрыть"/></h2>
-            <div className="items">
+            <div className={style.items}>
                 <div className="cardItem d-flex align-center">
                     <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)", height: 70, width: 70, marginRight: 30 }} className="cartItemimg"></div>
                     <div className="mr-20">

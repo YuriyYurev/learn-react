@@ -1,0 +1,23 @@
+.row {
+    $gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-0.5 * $gap);
+    margin-right: calc(-0.5 * $gap);
+    margin-top: calc(-1 * $gap);
+    
+    .card {
+        margin-top: $gap;
+        flex-basis: calc(100% / 1);
+        max-width: calc(100% / 1);
+        padding: 0 calc($gap / 2);
+        @media (min-width: 576px) {
+            flex-basis: calc(100% / 2);
+            max-width: calc(100% / 2);
+        }
+        @media (min-width: 768px) {
+            flex-basis: calc(100% / 4);
+            max-width: calc(100% / 4);
+        }
+    }
+}
