@@ -6,9 +6,7 @@ export default function App() {
 
 	return (
 		<div className="wrapper clear">
-			<div className="overlay" style={{ display: 'none' }}>
-				<Drawer/>
-			</div>
+			<Drawer/>
 			<Header/>
 			<div className="content p-40"> 
 				<div className="d-flex align-center justify-between mb-40">
