@@ -13,8 +13,8 @@ export default function ListCards() {
         <div className={style.row}>
             {cards.map(card => {
                 return (
-                    <div className={style.card}>
-                        <Card key={card.id} id={card.id} title={card.title} src={card.src} price={card.price}/>
+                    <div className={style.card} key={card.id}>
+                        <Card  id={card.id} title={card.title} src={card.src} price={card.price}/>
                     </div>
                 );
             })}
