@@ -3,7 +3,6 @@ import Drawer from "./components/Drawer";
 import ListCards from "./components/ListCards";
 import { useState } from "react";
 
-
 export default function App() {
 	const [ drawerOpened, setDrawerOpened] = useState(false);
 
