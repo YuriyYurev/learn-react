@@ -1,10 +1,13 @@
 import React from 'react'
 import style from './Card.module.scss'
 
-export default function Card({id, title, src, price}) {
+export default function Card({id, title, src, price, onPlus}) {
     const [ isAdded, setIsAdded ] = React.useState(false);
 
-    const onPlusClick = () => setIsAdded(!isAdded);
+    const onPlusClick = () => {
+        onPlus({id, title, src, price, onPlus})
+        setIsAdded(!isAdded)
+    };
     
     return (
         <div className={style.card} id={id}>

@@ -1,6 +1,6 @@
 import style from './Drawer.module.scss'
 
-export default function Drawer({isActive, onDrawerClose}) {
+export default function Drawer({isActive, cards = [], onDrawerClose}) {
     return (
         <div className={isActive ? `${style.overlay} ${style['is-active']}` : style.overlay}>
             <div className={style.drawer}>
@@ -8,16 +8,20 @@ export default function Drawer({isActive, onDrawerClose}) {
                     Корзина 
                     <img className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Закрыть" onClick={onDrawerClose}/>
                 </h2>
-                <div className={style.items}>
-                    <div className="cardItem d-flex align-center">
-                        <div style={{ backgroundImage: "url(/img/sneakers/1.jpg)" }} className="cartItemImg"></div>
-                        <div className="mr-20">
-                            <p className="mb-5">Мужские кроссовки</p>
-                            <b>1025.руб.</b>
+                {cards.map(card => {
+                    return (
+                        <div className={style.items} key={card.id}>
+                            <div className="cardItem d-flex align-center">
+                                <div style={{ backgroundImage: `url(${card.src})` }} className="cartItemImg"></div>
+                                <div className="mr-20">
+                                    <p className="mb-5">{card.title}</p>
+                                    <b>{card.price} руб.</b>
+                                </div>
+                                <img className="removeBtn" src="/img/btn-remove.svg" alt="Удалить"/>
+                            </div>
                         </div>
-                        <img className="removeBtn" src="/img/btn-remove.svg" alt="Удалить"/>
-                    </div>
-                </div>
+                    );
+                })}
                 <div className="cartTotalBlock">
                     <ul>
                         <li className="d-flex">
