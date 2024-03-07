@@ -1,12 +1,12 @@
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import ListCards from "./components/ListCards";
-import { useEffect, useState } from "react";
+import React from "react";
 
 export default function App() {
-	const [ drawerOpened, setDrawerOpened ] = useState(false);
-	const [ items , setItems ] = useState([]);
-	useEffect( () => {
+	const [ drawerOpened, setDrawerOpened ] = React.useState(false);
+	const [ items , setItems ] = React.useState([]);
+	React.useEffect( () => {
 		fetch('https://65e73c4053d564627a8e4edd.mockapi.io/items')
 		.then((res) => {
 			return res.json();

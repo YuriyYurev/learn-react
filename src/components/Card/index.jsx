@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React from 'react'
 import style from './Card.module.scss'
 
 export default function Card({id, title, src, price}) {
-    const [ isAdded, setIsAdded ] = useState(false);
+    const [ isAdded, setIsAdded ] = React.useState(false);
 
     const onPlusClick = () => setIsAdded(!isAdded);
     
