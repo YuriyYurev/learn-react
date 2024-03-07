@@ -1,11 +1,21 @@
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import ListCards from "./components/ListCards";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-	const [ drawerOpened, setDrawerOpened] = useState(false);
-
+	const [ drawerOpened, setDrawerOpened ] = useState(false);
+	const [ items , setItems ] = useState([]);
+	useEffect( () => {
+		fetch('https://65e73c4053d564627a8e4edd.mockapi.io/items')
+		.then((res) => {
+			return res.json();
+		})
+		.then((items) => {
+			setItems(items);
+		})
+	}, [])
+	
 	return (
 		<div className="wrapper clear">
 			<Drawer isActive={drawerOpened} onDrawerClose={() => setDrawerOpened(false)}/>
@@ -18,7 +28,7 @@ export default function App() {
 						<input type="text" placeholder="Поиск..."/>
 					</div>
 				</div>
-				<ListCards/>
+				<ListCards cards={items}/>
 			</div>
 		</div>
 	);
