@@ -15,6 +15,11 @@ export default function App() {
         setCardItems((prev) => [...prev, obj]);
     };
 
+    const onRemoveToCart = (id) => {
+        axios.delete(`https://65e73c4053d564627a8e4edd.mockapi.io/cart/${id}`);
+        setCardItems((prev) => prev.filter(cart => cart.id !== id));
+    };
+
     const onChangeSearchInput = (event) => {
         setSearchValue(event.target.value);
     };
@@ -31,7 +36,7 @@ export default function App() {
     return (
         <div className="wrapper clear">
             <React.StrictMode>
-                <Drawer isActive={drawerOpened} cards={cardItems} onDrawerClose={() => setDrawerOpened(false)} />
+                <Drawer isActive={drawerOpened} cards={cardItems} onDrawerClose={() => setDrawerOpened(false)} onRemoveToCart={onRemoveToCart} />
                 <Header onDrawerOpened={() => setDrawerOpened(true)} />
                 <div className="content p-40">
                     <div className="d-flex align-center justify-between mb-40">
