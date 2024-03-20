@@ -1,11 +1,11 @@
 import React from "react";
 import style from "./Card.module.scss";
 
-export default function Card({ id, title, src, price, onPlus }) {
+export default function Card({ id, title, src, price, onAddToCart }) {
     const [isAdded, setIsAdded] = React.useState(false);
 
     const onPlusClick = () => {
-        onPlus({ id, title, src, price, onPlus });
+        onAddToCart({ id, title, src, price, onAddToCart });
         setIsAdded(!isAdded);
     };
 
