@@ -57,7 +57,7 @@ export default function Drawer({ isActive, cards = [], onDrawerClose, onRemoveTo
                         <img className="mb-20" width="120px" src="img/empty-cart.jpg" alt="Empty" />
                         <h2>Корзина пустая</h2>
                         <p className="opacity-6">Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                        <button className="greenButton">
+                        <button className="greenButton" onClick={onDrawerClose}>
                             <img src="img/arrow.svg" alt="Arrow" />
                             Вернуться назад
                         </button>
