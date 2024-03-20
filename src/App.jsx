@@ -47,7 +47,7 @@ export default function App() {
                         )}
                     </div>
                 </div>
-                <ListCards cards={items} onPlus={onPlus} />
+                <ListCards cards={items} onPlus={onPlus} searchValue={searchValue} />
             </div>
         </div>
     );
