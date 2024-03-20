@@ -7,10 +7,14 @@ export default function App() {
     const [drawerOpened, setDrawerOpened] = React.useState(false);
     const [items, setItems] = React.useState([]);
     const [cardItems, setCardItems] = React.useState([]);
-    const [searchValue, setSearchValue] = React.useState([]);
+    const [searchValue, setSearchValue] = React.useState("");
 
     const onPlus = (obj) => {
         setCardItems((prev) => [...prev, obj]);
+    };
+
+    const onChangeSearchInput = (event) => {
+        setSearchValue(event.target.value);
     };
 
     React.useEffect(() => {
@@ -29,10 +33,18 @@ export default function App() {
             <Header onDrawerOpened={() => setDrawerOpened(true)} />
             <div className="content p-40">
                 <div className="d-flex align-center justify-between mb-40">
-                    <h1 className="">Все кроссовки</h1>
+                    <h1 className="">{searchValue ? `Поиск по: ${searchValue}` : "Все кроссовки"}</h1>
                     <div className="search-block d-flex">
                         <img src="/img/search.svg" alt="Поиск" />
-                        <input type="text" placeholder="Поиск..." />
+                        <input type="text" placeholder="Поиск..." value={searchValue} onChange={onChangeSearchInput} />
+                        {searchValue && (
+                            <img
+                                src="/img/btn-remove.svg"
+                                alt="Очистить поиск"
+                                className="clear cu-p"
+                                onClick={() => setSearchValue("")}
+                            />
+                        )}
                     </div>
                 </div>
                 <ListCards cards={items} onPlus={onPlus} />
