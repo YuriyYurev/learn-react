@@ -1,12 +1,12 @@
 import React from "react";
 import style from "./Card.module.scss";
 
-export default function Card({ id, title, src, price, onAddToCart }) {
+export default function Card({ id, title, src, price, onAddToCart, onRemoveToCart }) {
     const [isAdded, setIsAdded] = React.useState(false);
 
     const onPlusClick = () => {
+        setIsAdded((prev) => !prev);
         onAddToCart({ id, title, src, price, onAddToCart });
-        setIsAdded(!isAdded);
     };
 
     return (
@@ -22,7 +22,13 @@ export default function Card({ id, title, src, price, onAddToCart }) {
                     <b>{price} руб.</b>
                 </div>
                 <button type="button" className={style.plus} onClick={onPlusClick}>
-                    <img height={11} width={11} src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"} alt="" />
+                    <img
+                        height={11}
+                        width={11}
+                        data-action={isAdded}
+                        src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+                        alt={isAdded ? "Удалить" : "Добавить"}
+                    />
                 </button>
             </div>
         </div>

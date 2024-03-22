@@ -59,7 +59,7 @@ export default function App() {
                             )}
                         </div>
                     </div>
-                    <ListCards cards={items} onAddToCart={onAddToCart} searchValue={searchValue} />
+                    <ListCards cards={items} onAddToCart={onAddToCart} searchValue={searchValue} onRemoveToCart={onRemoveToCart} />
                 </div>
             </React.StrictMode>
         </div>
