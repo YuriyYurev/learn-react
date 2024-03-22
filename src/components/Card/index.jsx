@@ -3,16 +3,28 @@ import style from "./Card.module.scss";
 
 export default function Card({ id, title, src, price, onAddToCart, onRemoveToCart }) {
     const [isAdded, setIsAdded] = React.useState(false);
+    const [favorite, setFavorite] = React.useState(false);
 
     const onPlusClick = () => {
         setIsAdded((prev) => !prev);
         onAddToCart({ id, title, src, price, onAddToCart });
     };
 
+    const onFavoriteClick = () => {
+        setFavorite((prev) => !prev);
+    };
+
     return (
         <div className={style.card} id={id}>
             <div className={style.favorite}>
-                <img className="cu-p" height={40} width={40} src="/img/unliked.svg" alt="" />
+                <img
+                    className="cu-p"
+                    height={40}
+                    width={40}
+                    src={favorite ? "/img/liked.svg" : "/img/unliked.svg"}
+                    alt={favorite ? "Удалить из избранного" : "Добавить в избранное"}
+                    onClick={onFavoriteClick}
+                />
             </div>
             <img className={style.img} src={src} alt="" />
             <p>{title}</p>
