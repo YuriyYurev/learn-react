@@ -11,13 +11,13 @@ export default function App() {
     const [searchValue, setSearchValue] = React.useState("");
 
     const onAddToCart = (obj) => {
-        axios.post("https://65e73c4053d564627a8e4edd.mockapi.io/cart", obj);
+        // axios.post("https://65e73c4053d564627a8e4edd.mockapi.io/items", obj);
         setCardItems((prev) => [...prev, obj]);
     };
 
     const onRemoveToCart = (id) => {
-        axios.delete(`https://65e73c4053d564627a8e4edd.mockapi.io/cart/${id}`);
-        setCardItems((prev) => prev.filter(cart => cart.id !== id));
+        // axios.delete(`https://65e73c4053d564627a8e4edd.mockapi.io/cart/${id}`);
+        setCardItems((prev) => prev.filter((cart) => cart.id !== id));
     };
 
     const onChangeSearchInput = (event) => {
@@ -26,17 +26,22 @@ export default function App() {
 
     React.useEffect(() => {
         axios.get("https://65e73c4053d564627a8e4edd.mockapi.io/items").then((response) => {
-            setItems(response.data);
-        });
-        axios.get("https://65e73c4053d564627a8e4edd.mockapi.io/cart").then((response) => {
-            setCardItems(response.data);
+            const items = response.data;
+            const carts = items.filter((cart) => cart.isCart === true);
+            setItems(items);
+            setCardItems(carts);
         });
     }, []);
 
     return (
         <div className="wrapper clear">
             <React.StrictMode>
-                <Drawer isActive={drawerOpened} cards={cardItems} onDrawerClose={() => setDrawerOpened(false)} onRemoveToCart={onRemoveToCart} />
+                <Drawer
+                    isActive={drawerOpened}
+                    cards={cardItems}
+                    onDrawerClose={() => setDrawerOpened(false)}
+                    onRemoveToCart={onRemoveToCart}
+                />
                 <Header onDrawerOpened={() => setDrawerOpened(true)} />
                 <div className="content p-40">
                     <div className="d-flex align-center justify-between mb-40">
@@ -59,7 +64,12 @@ export default function App() {
                             )}
                         </div>
                     </div>
-                    <ListCards cards={items} onAddToCart={onAddToCart} searchValue={searchValue} onRemoveToCart={onRemoveToCart} />
+                    <ListCards
+                        cards={items}
+                        onAddToCart={onAddToCart}
+                        searchValue={searchValue}
+                        onRemoveToCart={onRemoveToCart}
+                    />
                 </div>
             </React.StrictMode>
         </div>
