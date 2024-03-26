@@ -7,21 +7,17 @@ import React from "react";
 export default function App() {
     const [drawerOpened, setDrawerOpened] = React.useState(false);
     const [items, setItems] = React.useState([]);
-    const [cardItems, setCardItems] = React.useState([]);
     const [searchValue, setSearchValue] = React.useState("");
 
     const onToggleTocart = ({ id, changeActive }) => {
-        const obj = {
-            id,
-            isCart: changeActive,
-        };
+        const obj = items.find((item) => item.id === id);
+        obj.isCart = changeActive;
         axios.put(`https://65e73c4053d564627a8e4edd.mockapi.io/items/${id}`, obj);
-        setCardItems(items.map((cart) => (cart.id === obj.id ? (cart.isCart = obj.isCart) : cart)));
+        setItems(prev => prev.map((item) => item.id === id ? obj : item));
     };
 
     const onRemoveToCart = (id) => {
         // axios.delete(`https://65e73c4053d564627a8e4edd.mockapi.io/cart/${id}`);
-        // setCardItems((prev) => prev.filter((cart) => cart.id !== id));
     };
 
     const onChangeSearchInput = (event) => {
@@ -31,19 +27,18 @@ export default function App() {
     React.useEffect(() => {
         axios.get("https://65e73c4053d564627a8e4edd.mockapi.io/items").then((response) => {
             setItems(response.data);
-            // setCardItems(carts);
         });
     }, []);
 
     return (
         <div className="wrapper clear">
             <React.StrictMode>
-                <Drawer
+                {/* <Drawer
                     isActive={drawerOpened}
-                    // cards={items}
+                    cards={items}
                     onDrawerClose={() => setDrawerOpened(false)}
                     onRemoveToCart={onRemoveToCart}
-                />
+                /> */}
                 <Header onDrawerOpened={() => setDrawerOpened(true)} />
                 <div className="content p-40">
                     <div className="d-flex align-center justify-between mb-40">
@@ -66,12 +61,7 @@ export default function App() {
                             )}
                         </div>
                     </div>
-                    <ListCards
-                        cards={items}
-                        onToggleTocart={onToggleTocart}
-                        searchValue={searchValue}
-                        onRemoveToCart={onRemoveToCart}
-                    />
+                    <ListCards cards={items} onToggleTocart={onToggleTocart} searchValue={searchValue} />
                 </div>
             </React.StrictMode>
         </div>
