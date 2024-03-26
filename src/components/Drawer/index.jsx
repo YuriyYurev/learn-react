@@ -8,9 +8,9 @@ export default function Drawer({ isActive, cards = [], onDrawerClose, onRemoveTo
                     Корзина
                     <img className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Закрыть" onClick={onDrawerClose} />
                 </h2>
-                {cards.length ? (
+                {cards.filter((card) => card.isCart === true).length ? (
                     <>
-                        <div className={style.items+ " flex"}>
+                        <div className={style.items + " flex"}>
                             {cards
                                 .filter((card) => card.isCart === true)
                                 .map((card) => {
