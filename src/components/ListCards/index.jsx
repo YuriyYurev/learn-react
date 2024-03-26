@@ -1,7 +1,7 @@
 import style from "./ListCards.module.scss";
 import Card from "../Card";
 
-export default function ListCards({ cards, onAddToCart, onRemoveToCart, searchValue }) {
+export default function ListCards({ cards, onToggleTocart, onRemoveToCart, searchValue }) {
     return (
         <div className={style.row}>
             {cards
@@ -9,7 +9,15 @@ export default function ListCards({ cards, onAddToCart, onRemoveToCart, searchVa
                 .map((card) => {
                     return (
                         <div className={style.card} key={card.id}>
-                            <Card id={card.id} title={card.title} src={card.src} price={card.price} onAddToCart={onAddToCart} onRemoveToCart={onRemoveToCart} />
+                            <Card
+                                id={card.id}
+                                title={card.title}
+                                src={card.src}
+                                price={card.price}
+                                isCart={card.isCart}
+                                onToggleTocart={onToggleTocart}
+                                onRemoveToCart={onRemoveToCart}
+                            />
                         </div>
                     );
                 })}

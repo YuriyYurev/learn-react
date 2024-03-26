@@ -1,18 +1,14 @@
 import React from "react";
 import style from "./Card.module.scss";
 
-export default function Card({ id, title, src, price, onAddToCart, onRemoveToCart }) {
-    const [isAdded, setIsAdded] = React.useState(false);
-    const [favorite, setFavorite] = React.useState(false);
+export default function Card({ id, title, src, price, isCart, onToggleTocart }) {
+    // const [favorite, setFavorite] = React.useState(false);
 
     const onPlusClick = () => {
-        setIsAdded((prev) => !prev);
-        onAddToCart({ id, title, src, price, onAddToCart });
+        const changeActive = !isCart;
+        onToggleTocart({ id, changeActive });
     };
 
-    const onFavoriteClick = () => {
-        setFavorite((prev) => !prev);
-    };
 
     return (
         <div className={style.card} id={id}>
@@ -21,9 +17,9 @@ export default function Card({ id, title, src, price, onAddToCart, onRemoveToCar
                     className="cu-p"
                     height={40}
                     width={40}
-                    src={favorite ? "/img/liked.svg" : "/img/unliked.svg"}
-                    alt={favorite ? "Удалить из избранного" : "Добавить в избранное"}
-                    onClick={onFavoriteClick}
+                    // src={favorite ? "/img/liked.svg" : "/img/unliked.svg"}
+                    // alt={favorite ? "Удалить из избранного" : "Добавить в избранное"}
+                    // onClick={onFavoriteClick}
                 />
             </div>
             <img className={style.img} src={src} alt="" />
@@ -37,9 +33,8 @@ export default function Card({ id, title, src, price, onAddToCart, onRemoveToCar
                     <img
                         height={11}
                         width={11}
-                        data-action={isAdded}
-                        src={isAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
-                        alt={isAdded ? "Удалить" : "Добавить"}
+                        src={isCart ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
+                        alt={isCart ? "Удалить" : "Добавить"}
                     />
                 </button>
             </div>
