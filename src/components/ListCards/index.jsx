@@ -1,7 +1,7 @@
 import style from "./ListCards.module.scss";
 import Card from "../Card";
 
-export default function ListCards({ cards, onToggleTocart, onRemoveToCart, searchValue }) {
+export default function ListCards({ cards, onToggleTocart, onFavoriteToggle, searchValue }) {
     return (
         <div className={style.row}>
             {cards
@@ -15,8 +15,9 @@ export default function ListCards({ cards, onToggleTocart, onRemoveToCart, searc
                                 src={card.src}
                                 price={card.price}
                                 isCart={card.isCart}
+                                isFavorite={card.isFavorite}
                                 onToggleTocart={onToggleTocart}
-                                onRemoveToCart={onRemoveToCart}
+                                onFavoriteToggle={onFavoriteToggle}
                             />
                         </div>
                     );

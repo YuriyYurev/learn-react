@@ -1,14 +1,16 @@
 import React from "react";
 import style from "./Card.module.scss";
 
-export default function Card({ id, title, src, price, isCart, onToggleTocart }) {
-    // const [favorite, setFavorite] = React.useState(false);
-
+export default function Card({ id, title, src, price, isFavorite, isCart, onToggleTocart, onFavoriteToggle }) {
     const onPlusClick = () => {
         const changeActive = !isCart;
         onToggleTocart({ id, changeActive });
     };
 
+    const onFavoriteClick = () => {
+        const changeFavorite = !isFavorite;
+        onFavoriteToggle({ id, changeFavorite });
+    };
 
     return (
         <div className={style.card} id={id}>
@@ -17,9 +19,9 @@ export default function Card({ id, title, src, price, isCart, onToggleTocart }) 
                     className="cu-p"
                     height={40}
                     width={40}
-                    // src={favorite ? "/img/liked.svg" : "/img/unliked.svg"}
-                    // alt={favorite ? "Удалить из избранного" : "Добавить в избранное"}
-                    // onClick={onFavoriteClick}
+                    src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"}
+                    alt={isFavorite ? "Удалить из избранного" : "Добавить в избранное"}
+                    onClick={onFavoriteClick}
                 />
             </div>
             <img className={style.img} src={src} alt="" />

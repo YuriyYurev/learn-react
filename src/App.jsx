@@ -13,11 +13,21 @@ export default function App() {
         const obj = items.find((item) => item.id === id);
         obj.isCart = changeActive;
         axios.put(`https://65e73c4053d564627a8e4edd.mockapi.io/items/${id}`, obj);
-        setItems(prev => prev.map((item) => item.id === id ? obj : item));
+        setItems((prev) => prev.map((item) => (item.id === id ? obj : item)));
     };
 
-    const onRemoveToCart = (id) => {
-        // axios.delete(`https://65e73c4053d564627a8e4edd.mockapi.io/cart/${id}`);
+    const onRemoveToBasket = (id) => {
+        const obj = items.find((item) => item.id === id);
+        obj.isCart = false;
+        axios.put(`https://65e73c4053d564627a8e4edd.mockapi.io/items/${id}`, obj);
+        setItems((prev) => prev.map((item) => (item.id === id ? obj : item)));
+    };
+
+    const onFavoriteToggle = ({ id, changeFavorite }) => {
+        const obj = items.find((item) => item.id === id);
+        obj.isFavorite = changeFavorite;
+        axios.put(`https://65e73c4053d564627a8e4edd.mockapi.io/items/${id}`, obj);
+        setItems((prev) => prev.map((item) => (item.id === id ? obj : item)));
     };
 
     const onChangeSearchInput = (event) => {
@@ -33,12 +43,12 @@ export default function App() {
     return (
         <div className="wrapper clear">
             <React.StrictMode>
-                {/* <Drawer
+                <Drawer
                     isActive={drawerOpened}
                     cards={items}
                     onDrawerClose={() => setDrawerOpened(false)}
-                    onRemoveToCart={onRemoveToCart}
-                /> */}
+                    onRemoveToBasket={onRemoveToBasket}
+                />
                 <Header onDrawerOpened={() => setDrawerOpened(true)} />
                 <div className="content p-40">
                     <div className="d-flex align-center justify-between mb-40">
@@ -61,7 +71,7 @@ export default function App() {
                             )}
                         </div>
                     </div>
-                    <ListCards cards={items} onToggleTocart={onToggleTocart} searchValue={searchValue} />
+                    <ListCards cards={items} onToggleTocart={onToggleTocart} searchValue={searchValue} onFavoriteToggle={onFavoriteToggle}/>
                 </div>
             </React.StrictMode>
         </div>

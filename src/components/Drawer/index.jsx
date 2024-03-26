@@ -1,6 +1,6 @@
 import style from "./Drawer.module.scss";
 
-export default function Drawer({ isActive, cards = [], onDrawerClose, onRemoveToCart }) {
+export default function Drawer({ isActive, cards = [], onDrawerClose, onRemoveToBasket }) {
     return (
         <div className={isActive ? `${style.overlay} ${style["is-active"]}` : style.overlay}>
             <div className={style.drawer}>
@@ -11,28 +11,30 @@ export default function Drawer({ isActive, cards = [], onDrawerClose, onRemoveTo
                 {cards.length ? (
                     <div className="d-flex flex-column flex">
                         <div className="items flex">
-                            {cards.map((card) => {
-                                return (
-                                    <div className={style.items} key={card.id}>
-                                        <div className="cardItem d-flex align-center mb-20">
-                                            <div
-                                                style={{ backgroundImage: `url(${card.src})` }}
-                                                className="cartItemImg"
-                                            ></div>
-                                            <div className="mr-20 d-flex flex-column">
-                                                <p className="mb-5">{card.title}</p>
-                                                <b>{card.price} руб.</b>
+                            {cards
+                                .filter((card) => card.isCart === true)
+                                .map((card) => {
+                                    return (
+                                        <div className={style.items} key={card.id}>
+                                            <div className="cardItem d-flex align-center mb-20">
+                                                <div
+                                                    style={{ backgroundImage: `url(${card.src})` }}
+                                                    className="cartItemImg"
+                                                ></div>
+                                                <div className="mr-20 d-flex flex-column">
+                                                    <p className="mb-5">{card.title}</p>
+                                                    <b>{card.price} руб.</b>
+                                                </div>
+                                                <img
+                                                    className="removeBtn"
+                                                    src="/img/btn-remove.svg"
+                                                    alt="Удалить"
+                                                    onClick={() => onRemoveToBasket(card.id)}
+                                                />
                                             </div>
-                                            <img
-                                                className="removeBtn"
-                                                src="/img/btn-remove.svg"
-                                                alt="Удалить"
-                                                onClick={() => onRemoveToCart(card.id)}
-                                            />
                                         </div>
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
                         </div>
                         <div className="cartTotalBlock">
                             <ul>
