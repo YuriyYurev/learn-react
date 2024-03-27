@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
 import Home from "./pages/Home";
+import Empty from "./pages/Empty"
 import Favorites from "./pages/Favorites";
 // import ListCards from "./components/ListCards";
 import axios from "axios";
@@ -57,6 +58,7 @@ export default function App() {
                     <Routes>
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/favorites" element={<Favorites />}></Route>
+                        <Route path="*" element={<Empty />}></Route>
                     </Routes>
                 </div>
             </React.StrictMode>
