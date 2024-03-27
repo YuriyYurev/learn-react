@@ -55,7 +55,16 @@ export default function App() {
                 <Header onDrawerOpened={() => setDrawerOpened(true)} />
                 <div className="content p-40">
                     <Routes>
-                        <Route path="/" element={<Home />}></Route>
+                        <Route
+                            path="/"
+                            element={
+                                <Home
+                                    searchValue={searchValue}
+                                    onChangeSearchInput={onChangeSearchInput}
+                                    setSearchValue={setSearchValue}
+                                />
+                            }
+                        ></Route>
                         <Route path="/favorites" element={<Favorites />}></Route>
                         <Route path="*" element={<Empty />}></Route>
                     </Routes>

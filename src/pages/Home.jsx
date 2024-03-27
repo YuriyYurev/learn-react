@@ -1,10 +1,10 @@
 // import ListCards from "../components/ListCards";
 import React from "react";
 
-export default function Home() {
+export default function Home({searchValue, onChangeSearchInput, setSearchValue}) {
     return (
         <>
-            {/* <div className="d-flex align-center justify-between mb-40">
+            <div className="d-flex align-center justify-between mb-40">
                 <h1 className="">{searchValue ? `Поиск по: ${searchValue}` : "Все кроссовки"}</h1>
                 <div className="search-block d-flex">
                     <img src="/img/search.svg" alt="Поиск" />
@@ -18,7 +18,7 @@ export default function Home() {
                         />
                     )}
                 </div>
-            </div> */}
+            </div>
             {/* <ListCards
                 cards={items}
                 onToggleTocart={onToggleTocart}
