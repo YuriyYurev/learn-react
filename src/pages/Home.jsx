@@ -1,10 +1,9 @@
 // import ListCards from "../components/ListCards";
 import React from "react";
 
-export default function App() {
+export default function Home() {
     return (
         <>
-        <h1>Home</h1>
             {/* <div className="d-flex align-center justify-between mb-40">
                 <h1 className="">{searchValue ? `Поиск по: ${searchValue}` : "Все кроссовки"}</h1>
                 <div className="search-block d-flex">
