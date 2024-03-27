@@ -1,7 +1,7 @@
-// import ListCards from "../components/ListCards";
+import ListCards from "../components/ListCards";
 import React from "react";
 
-export default function Home({searchValue, onChangeSearchInput, setSearchValue}) {
+export default function Home({searchValue, onChangeSearchInput, setSearchValue, items, onToggleTocart, onFavoriteToggle}) {
     return (
         <>
             <div className="d-flex align-center justify-between mb-40">
@@ -19,12 +19,12 @@ export default function Home({searchValue, onChangeSearchInput, setSearchValue})
                     )}
                 </div>
             </div>
-            {/* <ListCards
+            <ListCards
                 cards={items}
                 onToggleTocart={onToggleTocart}
                 searchValue={searchValue}
                 onFavoriteToggle={onFavoriteToggle}
-            /> */}
+            />
         </>
     );
 }

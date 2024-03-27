@@ -62,6 +62,9 @@ export default function App() {
                                     searchValue={searchValue}
                                     onChangeSearchInput={onChangeSearchInput}
                                     setSearchValue={setSearchValue}
+                                    items={items}
+                                    onToggleTocart={onToggleTocart}
+                                    onFavoriteToggle={onFavoriteToggle}
                                 />
                             }
                         ></Route>
