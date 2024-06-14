@@ -25,6 +25,6 @@ export default function Home({searchValue, onChangeSearchInput, setSearchValue, 
                 searchValue={searchValue}
                 onFavoriteToggle={onFavoriteToggle}
             />
-        </> 
+        </>
     );
 }
